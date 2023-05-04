@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="twitter:" content="width=device-width, initial-scale=1">
+<style>
+body
+{
+background-image:url("purpleblue.png");
+margin-left:50%;
+padding:0;
+font-family:"Comic Sans MS", cursive, sans-serif;
+}
+h1{
+color:white;
+
+font-size:4em;
+}
+
+.button
+{
+width:200px;
+margin-left:-30%;
+height:150px;
+display:block;
+color:white;
+
+background-color:blue;
+margin-top:25px;
+font-size:2em;
+}
+
+.button:hover {background-color: #3e8e41;}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+.info
+{
+  background-color:white;
+  width:14rem;
+  margin-left:-30%;
+  height:50rem;
+  padding:2rem;
+  justify-content: space-around;
+  border-radius:1.5rem;
+  transition: all 5s ease-in;
+  position:absolute;
+  opacity:1;
+  transition: opacity 0.6s;
+
+}
+
+.fa-window-close
+{
+  position:absolute;
+  font-size:2rem;
+  top:0;
+  right:0;
+}
+
+.main
+{
+  position:absolute;
+}
+
+</style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+</head>
+<body>
+  <h1>Eve</h1>
+  <div class="main">
+  
+	   <button onclick="location.href='textOption.html'" class="button" size="10000">Text</button>
+    <button onclick="location.href='speechOption.html'" class="button" size="10000">Speech</button>
+  </div>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script>
+
+
+</script>
+</body>
+
+
+</html>

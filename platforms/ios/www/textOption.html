@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="new.css">
+</head>
+<body id="body">
+<h1>Eve</h1>
+		<footer id="footer">
+		<input id="instruct"  placeholder="Type a command" class="no-outline" >
+		<button onclick="Talk();">Enter</button>
+		</footer>
+<script type="text/javascript" src="cordova.js"></script>
+<script>
+function Talk()
+{
+
+var resText="";
+var instruct= document.getElementById("instruct").value;
+var lowerInstruct=document.getElementById("instruct").value.toLowerCase();
+var Welcome="Hello, I am Eve, your personal digital assistant. I can assist you in the following tasks: 1. Ask me how I am, 2. Ask for the current time, 3. Tell a joke, 4. Search the internet."
+var userDiv=document.createElement("userDIV");
+var userText=document.createTextNode(lowerInstruct);
+
+userDiv.appendChild(userText);
+userDiv.className="userText";
+document.body.appendChild(userDiv);
+//How are you feeling?
+if((lowerInstruct.indexOf("how")>-1)&&(lowerInstruct.indexOf("are you")>-1))
+{
+	resText="I am fine, how about you?";
+	TTS.speak('I am fine, how about you?');
+}
+
+else if((lowerInstruct.indexOf("i am well")>-1)||(lowerInstruct.indexOf("i am good")>-1))
+{
+		TTS.speak("Oh, that's wonderful!!");
+		resText="Oh, that's wonderful!!";
+}
+else if ((lowerInstruct.indexOf("i am horrible")>-1)||(lowerInstruct.indexOf("i am bad")>-1))
+{
+		TTS.speak("That's awful to hear, hope you feel better soon!");
+		resText="That's awful to hear, hope you feel better soon!";
+}
+//Other Questions
+else if((lowerInstruct.indexOf("who are you")>-1)||(lowerInstruct.indexOf("what are you")>-1))
+{
+TTS.speak("My name is Eve and I was created to serve you.");
+resText="My name is Eve and I was created to serve you.";
+}
+
+//Welcome
+else if((lowerInstruct.indexOf("hello")>-1)||(lowerInstruct.indexOf("hey")>-1))
+{
+	resText=Welcome;
+	TTS.speak(Welcome);
+}
+
+//Time
+else if((lowerInstruct.indexOf("what")>-1)&&(lowerInstruct.indexOf("time")>-1)){
+  var time = new Date();
+    var TwentyFourHour = time.getHours();
+    var hour = time.getHours();
+    var min = time.getMinutes();
+   var mid = 'PM';
+    if (min < 10) {
+      min = "0" + min;
+	  if (hour > 12) {
+			hour = hour - 12;
+		}    
+		if(hour==0){ 
+			hour=12;
+		}
+		if(TwentyFourHour < 12) {
+			mid = 'AM';
+		}
+
+		if(min==0){
+		resText ='The time is '+hour+':'+min+' '+mid ;
+		TTS.speak('The time is'+hour+mid);
+		}
+		else{
+		resText ='The time is '+hour+':'+min+' '+mid ;
+		TTS.speak('The time is'+hour+'O'+min+' '+mid);
+		}
+    }
+	else {
+		if (hour > 12) {
+			hour = hour - 12;
+		}    
+		if(hour==0){ 
+			hour=12;
+		}
+		if(time.getHours() < 12) {
+			mid = 'AM';
+		}     
+		resText ='The time is '+hour+':'+min+' '+mid ;
+		TTS.speak('The time is '+hour+' '+min+' '+mid);
+	}
+}
+//Tell me a joke
+else if((lowerInstruct.indexOf("tell")>-1)&&(lowerInstruct.indexOf("joke")>-1))
+{
+	resText=("Ok, I'll tell you a joke");
+	TTS.speak("Ok, I'll tell you a joke");
+	
+	var joke=Math.floor((Math.random() * 10) + 1);
+if(joke==1)
+{
+TTS.speak("Why did the golfer wear two pairs of pants?......In case he got a whole in one!");
+resText="Why did the golfer wear two pairs of pants?......In case he got a whole in one!";
+}
+else if(joke==2)
+{
+TTS.speak("How does the ocean say hello?....It waves");
+resText="How does the ocean say hello?....It waves";
+}
+else if(joke==3)
+{
+TTS.speak("Why did the banana go to the hospital?......He was peeling really bad!");
+resText="Why did the banana go to the hospital?......He was peeling really bad!";
+}
+else if(joke==4)
+{
+TTS.speak("What creature is smarter than a talking parrot?......A spelling bee");
+resText="What creature is smarter than a talking parrot?......A spelling bee";
+}
+
+else if(joke==5)
+{
+TTS.speak("Why did the student eat his homework?........Because his teacher told him it would be a piece of cake");
+resText="Why did the student eat his homework? Because his teacher told him it would be a piece of cake";
+}
+
+else if(joke==6)
+{
+TTS.speak("Why did the computer go to the doctor?.....It had a virus");
+resText="Why did the computer go to the doctor?.....It had a virus";
+}
+
+else if(joke==7)
+{
+TTS.speak("What did one penny say to another penny?......We make cents");
+resText="What did one penny say to another penny?......We make cents";
+}
+
+else if(joke==8)
+{
+TTS.speak("What is the worst thing about throwing a party in space?....You have to planet!");
+resText="What is the worst thing about throwing a party in space?....You have to planet!";
+
+}
+else if(joke==9)
+{
+TTS.speak("What did the tree say to the wind?...Leaf me alone!");
+resText="What did the tree say to the wind?...Leaf me alone!";
+}
+
+else if(joke==10)
+{
+TTS.speak("How do you know when the moon has had enough to eat?.....When it's full!");
+resText="How do you know when the moon has had enough to eat?.....When it's full!";
+}
+}
+
+//Search for a keyword
+else if((lowerInstruct.indexOf("google")>-1)){
+var keyword;
+for(i=7;i<lowerInstruct.length;i++){
+if(i==7)
+	keyword=lowerInstruct[i];
+else
+	keyword+=lowerInstruct[i];
+
+}
+
+window.open("https://www.google.com/search?q="+keyword);
+TTS.speak("Searching Google for more about" +keyword);
+
+}
+
+else if((lowerInstruct.indexOf("bye eve")>-1)||(lowerInstruct.indexOf("goodbye eve")>-1)){
+resText="Good bye. Hope you have a nice day";
+TTS.speak("Good bye. Hope you have a nice day");
+
+}
+//Coming soon
+else {
+if((lowerInstruct!="")){
+resText="Hey, I am sorry but I can't understand your command yet. But maybe I'll be able to soon!";
+TTS.speak("Hey, I am sorry but I can't understand your command yet. But maybe I'll be able to soon!");
+}
+}
+var resDiv= document.createElement("DIV2");
+var resDivText= document.createTextNode(resText);
+resDiv.appendChild(resDivText);
+resDiv.className= "assistantText";
+document.body.appendChild(resDiv);
+
+}
+Talk();
+</script>
+</body>
+
+</html>
